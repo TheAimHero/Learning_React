@@ -1,25 +1,24 @@
-import React  from "react";
+import React from "react";
 
 import MovieElement from "./MovieElement";
-import Box from "./Box";
 
 function MoviesList(props) {
-  const { movies } = props;
+  const { movies, setSelectedId } = props;
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
-        <MovieElement movie={movie} key={movie.imdbID} />
+        <MovieElement
+          movie={movie}
+          setSelectedId={setSelectedId}
+          key={movie.imdbID}
+        />
       ))}
     </ul>
   );
 }
 
 export default function MoviesListBox(props) {
-  const { movies } = props;
+  const { movies, setSelectedId } = props;
 
-  return (
-    <Box>
-      <MoviesList movies={movies} />
-    </Box>
-  );
+  return <MoviesList movies={movies} setSelectedId={setSelectedId} />;
 }

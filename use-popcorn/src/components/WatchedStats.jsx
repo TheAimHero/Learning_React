@@ -6,9 +6,15 @@ const average = (arr) =>
 export default function WatchStats(props) {
   const { watched } = props;
 
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  const avgImdbRating = average(
+    watched.map((movie) => movie.imdbRating)
+  ).toFixed(1);
+  const avgUserRating = average(
+    watched.map((movie) => movie.userRating)
+  ).toFixed(1);
+  const avgRuntime = average(
+    watched.map((movie) => movie.Runtime.split(" ")[0])
+  ).toFixed(1);
 
   return (
     <div className="summary">
@@ -22,10 +28,12 @@ export default function WatchStats(props) {
           <span>⭐️</span>
           <span>{avgImdbRating}</span>
         </p>
-        <p>
-          <span>🌟</span>
-          <span>{avgUserRating}</span>
-        </p>
+        {!isNaN(avgUserRating) && (
+          <p>
+            <span>👦⭐️</span>
+            <span>{avgUserRating}</span>
+          </p>
+        )}
         <p>
           <span>⏳</span>
           <span>{avgRuntime} min</span>
