@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useContext, useReducer } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useContext,
+  useReducer,
+  useCallback,
+} from "react";
 
 const url = "http://localhost:5000/";
 
@@ -113,21 +119,18 @@ export function CitiesProvider(props) {
     }
   }
 
-  async function getCity(id) {
-    async function fetchCities() {
-      dispatch({ type: "loading" });
-      try {
-        const response = await fetch(url + `cities/${id}`).catch((err) => {
-          throw new Error("Fetch Error");
-        });
-        const data = await response.json();
-        dispatch({ type: "city/loaded", payload: data });
-      } catch (err) {
-        console.log(err.message);
-      }
+  const getCity = useCallback(async (id) => {
+    dispatch({ type: "loading" });
+    try {
+      const response = await fetch(url + `cities/${id}`).catch((err) => {
+        throw new Error("Fetch Error");
+      });
+      const data = await response.json();
+      dispatch({ type: "city/loaded", payload: data });
+    } catch (err) {
+      console.log(err.message);
     }
-    fetchCities();
-  }
+  }, []);
 
   return (
     <CitiesContext.Provider
