@@ -4,7 +4,7 @@
 
 @layer components {
   .input {
-    @apply h-6 w-full rounded-full border border-stone-200 p-5 text-sm accent-yellow-400 transition-all duration-300 placeholder:text-stone-400 focus:outline-none 
+    @apply h-6 rounded-full border border-stone-200 p-5 text-sm accent-yellow-400 transition-all duration-300 placeholder:text-stone-400 focus:outline-none 
      focus:ring focus:ring-yellow-400 focus:ring-offset-2 md:px-6;
   }
 }

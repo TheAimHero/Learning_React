@@ -1,16 +1,31 @@
+import PropTypes from 'prop-types';
+
+import { formatCurrency } from '../../utils/helpers';
+
 function OrderItem({ item, isLoadingIngredients, ingredients }) {
   const { quantity, name, totalPrice } = item;
 
   return (
-    <li>
-      <div>
+    <li className='py-3 '>
+      <div className='flex items-center justify-between gap-4 text-sm'>
         <p>
-          <span>{quantity}&times;</span> {name}
+          <span className='font-bold '>{quantity}&times;</span> {name}
         </p>
-        <p>{formatCurrency(totalPrice)}</p>
+        <p className='font-bold'>{formatCurrency(totalPrice)}</p>
       </div>
     </li>
   );
 }
+
+OrderItem.propTypes = {
+  item: PropTypes.shape({
+    pizzaId: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    totalPrice: PropTypes.number.isRequired,
+  }).isRequired,
+  isLoadingIngredients: PropTypes.bool,
+  ingredients: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default OrderItem;
