@@ -11,7 +11,7 @@ function Menu() {
     return <MenuItem key={menuItem.id} pizza={menuItem} />;
   });
 
-  return <ul>{menuList}</ul>;
+  return <ul className='divide-y divide-stone-500 px-2'>{menuList}</ul>;
 }
 
 export async function loader() {

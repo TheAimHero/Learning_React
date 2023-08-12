@@ -1,10 +1,11 @@
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
+import Button from '../../ui/Button';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = str =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str
+    str,
   );
 
 const fakeCart = [
@@ -46,13 +47,13 @@ export default function CreateOrder() {
       <Form method="POST" action="/order/new">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input className="input" type="text" name="customer" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input type="tel" className="input" name="phone" required />
             {formErrors?.phone && <p>{formErrors.phone}</p>}
           </div>
         </div>
@@ -60,25 +61,27 @@ export default function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input className="input" type="text" name="address" required />
           </div>
         </div>
 
         <div>
           <input
             type="checkbox"
+            className={`h-6 w-6 accent-yellow-400 
+            focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2`}
             name="priority"
             id="priority"
             // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            // onChange={e => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
 
         <div>
-          <button disabled={isSubmiting}>
+          <Button disabled={isSubmiting}>
             {isSubmiting ? 'Placing Order...' : 'Order now'}
-          </button>
+          </Button>
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
       </Form>
