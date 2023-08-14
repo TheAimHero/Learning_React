@@ -5,7 +5,6 @@ import MenuItem from './MenuItem';
 
 function Menu() {
   const menuData = useLoaderData();
-  console.log(menuData);
 
   const menuList = menuData.map(menuItem => {
     return <MenuItem key={menuItem.id} pizza={menuItem} />;
