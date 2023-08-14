@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 LinkButton.propTypes = {
-  to: PropTypes.number,
+  to: PropTypes.string,
   children: PropTypes.node,
 };
 
